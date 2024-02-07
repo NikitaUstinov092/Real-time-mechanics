@@ -1,13 +1,14 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
-    [CreateAssetMenu(
+[CreateAssetMenu(
         fileName = "TimeRewardConfig"
     )]
     public sealed class TimeRewardConfig : ScriptableObject
     {
-        [SerializeReference]
-        public IRewardReceiver rewardReceiver;
+        [FormerlySerializedAs("rewardReceiver")] [SerializeReference]
+        public IRewardReceiver RewardReceiver;
         
         public float Duration;
         public int RewardCount;

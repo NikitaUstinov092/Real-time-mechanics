@@ -14,7 +14,7 @@ using Zenject;
         [Inject]
         private void Construct(DiContainer container)
         {
-            var rewardReceiverType = _config.rewardReceiver.GetType();
+            var rewardReceiverType = _config.RewardReceiver.GetType();
             var rewardReceiverComp = container.Resolve(rewardReceiverType);
             
             _timeReward.Construct(rewardReceiverComp as IRewardReceiver, _config.Duration, _config.RewardCount);
