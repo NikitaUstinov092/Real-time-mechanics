@@ -9,7 +9,7 @@ using UnityEngine;
         public event Action<IRealtimeTimer> OnStarted;
         
         [ShowInInspector, ReadOnly]
-        public string Id => nameof(TimeReward);
+        public string Id { get; private set; }
 
         [ShowInInspector, ReadOnly]
         private readonly Countdown _timer = new();
@@ -19,15 +19,14 @@ using UnityEngine;
         
         [SerializeField]
         private IRewardReceiver _rewardReceiver;
-        
-        public void Construct(IRewardReceiver rewardReceiver, float duration, int rewardCount)
+
+        public void Construct(IRewardReceiver rewardReceiver, float duration, int rewardCount, string timerId)
         {
             _rewardReceiver = rewardReceiver;
             _timer.Duration = duration;
             _timer.RemainingTime = duration;
             _rewardCount = rewardCount;
-
-            Initialize();
+            Id = timerId;
         }
         
         [Button]
@@ -53,7 +52,7 @@ using UnityEngine;
             OnStarted?.Invoke(this);
         }
         
-        private void Initialize()
+        public void Initialize()
         {
             if (_timer.Progress <= 0)
             {

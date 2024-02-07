@@ -16,10 +16,14 @@ using Zenject;
         {
             var rewardReceiverType = _config.RewardReceiver.GetType();
             var rewardReceiverComp = container.Resolve(rewardReceiverType);
-            
-            _timeReward.Construct(rewardReceiverComp as IRewardReceiver, _config.Duration, _config.RewardCount);
-            
             var saveLoader = container.Resolve<RealtimeSaveLoader>();
+          
+            _timeReward.Construct(rewardReceiverComp as IRewardReceiver, _config.Duration, _config.RewardCount, gameObject.name);
             saveLoader.RegisterTimer(_timeReward);
+        }
+        
+        public void Initialize()
+        {
+            _timeReward.Initialize();
         }
     }

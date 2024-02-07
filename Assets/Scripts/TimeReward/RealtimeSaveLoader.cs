@@ -61,45 +61,4 @@ namespace Lessons.MetaGame
         
     }
     
-    // public sealed class TimeRewardSaveLoader : MonoBehaviour, IGameLoadListener
-    // {
-    //     private const string GAME_TIME_PREFS = "GameTime";
-    //     private TimeReward _timeReward;
-    //
-    //     public void OnLoadGame(GameFacade gameFacade)
-    //     {
-    //         this._timeReward = gameFacade.GetService<TimeReward>();
-    //         this._timeReward.OnTimerStarted += this.OnTimerStarted;
-    //         this.SynchronizeTime();
-    //     }
-    //
-    //     private void SynchronizeTime()
-    //     {
-    //         if (!PlayerPrefs.HasKey(GAME_TIME_PREFS))
-    //         {
-    //             return;
-    //         }
-    //
-    //         var serializedTime = PlayerPrefs.GetString(GAME_TIME_PREFS);
-    //         var previousTime = DateTime.Parse(serializedTime, CultureInfo.InvariantCulture);
-    //
-    //         var timeSpan = DateTime.Now - previousTime;
-    //         var pauseSeconds = timeSpan.TotalSeconds;
-    //         this._timeReward.DecrementTimer((float) pauseSeconds);
-    //         Debug.Log($"PAUSE SECONDS {pauseSeconds}");
-    //     }
-    //
-    //     private void OnTimerStarted()
-    //     {
-    //         SaveTime();
-    //     }
-    //
-    //     private void SaveTime()
-    //     {
-    //         Debug.Log("SAVE TIMER");
-    //         var currentTime = DateTime.Now;
-    //         var serializedTime = currentTime.ToString(CultureInfo.InvariantCulture);
-    //         PlayerPrefs.SetString(GAME_TIME_PREFS, serializedTime);
-    //     }
-    // }
 }
