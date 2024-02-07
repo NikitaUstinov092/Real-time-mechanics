@@ -14,10 +14,10 @@ using Zenject;
         [Inject]
         private void Construct(DiContainer container)
         {
-            var type = _config.rewardReceiver.GetType();
-            var rewardReceiverComp = container.Resolve(type);
+            var rewardReceiverType = _config.rewardReceiver.GetType();
+            var rewardReceiverComp = container.Resolve(rewardReceiverType);
             
-            _timeReward.Construct(rewardReceiverComp as IRewardReceiver, _config);
+            _timeReward.Construct(rewardReceiverComp as IRewardReceiver, _config.Duration, _config.RewardCount);
             
             var saveLoader = container.Resolve<RealtimeSaveLoader>();
             saveLoader.RegisterTimer(_timeReward);

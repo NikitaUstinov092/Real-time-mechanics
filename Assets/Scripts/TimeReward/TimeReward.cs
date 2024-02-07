@@ -3,7 +3,6 @@ using Elementary;
 using Lessons.MetaGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Zenject;
 
     public sealed class TimeReward : IRealtimeTimer
     {
@@ -15,18 +14,18 @@ using Zenject;
         [ShowInInspector, ReadOnly]
         private readonly Countdown _timer = new();
         
-        [SerializeField]
-        private IRewardReceiver rewardReceiver;
+        [ShowInInspector, ReadOnly]
+        private int _rewardCount;
         
         [SerializeField]
-        private TimeRewardConfig _config;
-        public void Construct(IRewardReceiver rewardReceiver, TimeRewardConfig config)
+        private IRewardReceiver _rewardReceiver;
+        
+        public void Construct(IRewardReceiver rewardReceiver, float duration, int rewardCount)
         {
-            this.rewardReceiver = rewardReceiver;
-            _config = config;
-
-            _timer.Duration = config.Duration;
-            _timer.RemainingTime = config.Duration;
+            _rewardReceiver = rewardReceiver;
+            _timer.Duration = duration;
+            _timer.RemainingTime = duration;
+            _rewardCount = rewardCount;
 
             Initialize();
         }
@@ -46,7 +45,7 @@ using Zenject;
                 return;
             }
 
-            rewardReceiver.Reward(_config.RewardCount);
+            _rewardReceiver.Reward(_rewardCount);
             
             _timer.ResetTime();
             _timer.Play();
@@ -54,7 +53,7 @@ using Zenject;
             OnStarted?.Invoke(this);
         }
         
-        public void Initialize()
+        private void Initialize()
         {
             if (_timer.Progress <= 0)
             {

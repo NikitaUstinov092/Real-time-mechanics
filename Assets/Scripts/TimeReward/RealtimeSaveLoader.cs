@@ -8,11 +8,11 @@ namespace Lessons.MetaGame
 {
     public sealed class RealtimeSaveLoader : IInitializable
     {
-        private readonly HashSet<IRealtimeTimer> timers = new();
+        private readonly HashSet<IRealtimeTimer> _timers = new();
 
         public void RegisterTimer(IRealtimeTimer timer)
         {
-            if (timers.Add(timer))
+            if (_timers.Add(timer))
             {
                 timer.OnStarted += SaveTimer;
             }
@@ -20,7 +20,7 @@ namespace Lessons.MetaGame
 
         public void UnregisterTimer(IRealtimeTimer timer)
         {
-            if (timers.Remove(timer))
+            if (_timers.Remove(timer))
             {
                 timer.OnStarted -= SaveTimer;
             }
@@ -29,7 +29,7 @@ namespace Lessons.MetaGame
         void IInitializable.Initialize()
         { 
             var now = DateTime.Now;
-            foreach (var timer in timers)
+            foreach (var timer in _timers)
             {
                 SynchronizeTimer(timer, now);
             }

@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 17146428}
   - component: {fileID: 17146427}
   m_Layer: 0
-  m_Name: SilverChest
+  m_Name: MetalChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

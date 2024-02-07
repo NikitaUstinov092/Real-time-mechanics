@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public sealed class MoneyRewardReceiver : IRewardReceiver
+public class MoneyRewardReceiver : IRewardReceiver
     {
         public void Reward(int rewardCount)
         {

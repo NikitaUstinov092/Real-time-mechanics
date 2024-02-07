@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardReceiver:
     rid: 4316479411140689925
-  Duration: 30
+  Duration: 3000
   RewardCount: 2
   references:
     version: 2
